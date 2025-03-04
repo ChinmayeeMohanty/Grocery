@@ -37,6 +37,17 @@ public class GroceryRepo {
         return null;
     }
 
-
+    public String deleteItem(int pid) 
+    {
+        for (GroceryItem item : groceryItems) 
+        {
+            if (item.getPid() == pid) 
+            {
+                groceryItems.remove(item);
+                return "Item deleted successfully!";
+            }
+        }
+        return "Item not found!";
+    }
     
 }

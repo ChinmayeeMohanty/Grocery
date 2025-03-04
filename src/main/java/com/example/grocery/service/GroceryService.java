@@ -24,4 +24,9 @@ public class GroceryService
     public GroceryItem getItems( int pid) {
       return groceryRepo.getItems(pid);
   }
+  public String deleteItem(int pid)
+  {
+    return groceryRepo.deleteItem(pid);
+  }
+  
 }
