@@ -1,30 +1,28 @@
 package com.example.grocery.model;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Component
 @AllArgsConstructor
 @Entity
-public class GroceryItem {
-    private int stocks;
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int pid;
+    private int customerId;
     private String name;
-    private String catagory;
-    private double price;
-    @ManyToOne
-    @JoinColumn(name="customerId")
-    private Customer customer;
-    
+    private String emailId;
+    @OneToMany(mappedBy="customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<GroceryItem> groceryItem;
+
 }

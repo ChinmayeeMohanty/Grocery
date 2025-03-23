@@ -11,22 +11,25 @@ import com.example.grocery.repo.GroceryRepo;
 @Service
 public class GroceryService
 {
+
+    private final GroceryItem groceryItem;
   @Autowired
   private GroceryRepo groceryRepo;
+
+    GroceryService(GroceryItem groceryItem) {
+        this.groceryItem = groceryItem;
+    }
   public List<GroceryItem> getAllItems()
     {
-        return groceryRepo.getAllItems();
+        return groceryRepo.findAll();
     }
     public void addItems(GroceryItem item)
     {
-      groceryRepo.addItems(item);
+      groceryRepo.save(item);
     }
     public GroceryItem getItems( int pid) {
-      return groceryRepo.getItems(pid);
+      return groceryRepo.findById( pid).orElse(null);
   }
-  public String deleteItem(int pid)
-  {
-    return groceryRepo.deleteItem(pid);
-  }
+  
   
 }
