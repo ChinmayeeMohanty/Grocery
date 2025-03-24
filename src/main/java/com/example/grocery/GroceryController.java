@@ -34,9 +34,13 @@ public class GroceryController {
    groceryService.addItems(item);
       return groceryService.getItems(item.getPid());
   }
-//  @DeleteMapping("/{pid}")
-//     public String deleteItem(@PathVariable("pid") int pid) {
-//         return groceryService.deleteItem(pid);
-//     } 
-  
+ @DeleteMapping("/{pid}")
+    public void deleteItem(@PathVariable("pid") int pid) {
+        groceryService.deleteItem(pid);
+    } 
+@PostMapping("/buy/{pid}/{quantity}")
+    public String buyItem(@PathVariable("pid") int pid,@PathVariable("quantity") int quantity)
+    {
+      return groceryService.buyItem(pid,quantity);
+    }
 }

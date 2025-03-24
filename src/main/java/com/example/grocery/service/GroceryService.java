@@ -8,17 +8,14 @@ import org.springframework.stereotype.Service;
 import com.example.grocery.model.GroceryItem;
 import com.example.grocery.repo.GroceryRepo;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class GroceryService
 {
 
-    private final GroceryItem groceryItem;
   @Autowired
   private GroceryRepo groceryRepo;
-
-    GroceryService(GroceryItem groceryItem) {
-        this.groceryItem = groceryItem;
-    }
   public List<GroceryItem> getAllItems()
     {
         return groceryRepo.findAll();
@@ -30,6 +27,24 @@ public class GroceryService
     public GroceryItem getItems( int pid) {
       return groceryRepo.findById( pid).orElse(null);
   }
+  public void deleteItem(int pid)
+  {
+    groceryRepo.deleteById(pid);
+    System.out.println("Product deleted");
+  }
+  @Transactional
   
+  public String buyItem(int pid,int quantity)
+  {
+    int update=groceryRepo.reduceStock(pid, quantity);
+    if(update>0)
+    {
+      return "Successful buy";
+    }
+    else
+    {
+      return "Out of Stock";
+    }
+  }
   
 }
