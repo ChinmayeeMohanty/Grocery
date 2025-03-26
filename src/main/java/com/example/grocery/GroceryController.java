@@ -29,7 +29,7 @@ public class GroceryController {
   public GroceryItem getItems(@PathVariable("pid") int pid) {
       return groceryService.getItems(pid);
   }
-  @PostMapping("/")
+  @PostMapping("/add")
   public GroceryItem addItems(@RequestBody GroceryItem item) {
    groceryService.addItems(item);
       return groceryService.getItems(item.getPid());

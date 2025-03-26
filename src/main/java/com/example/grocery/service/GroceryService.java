@@ -33,18 +33,12 @@ public class GroceryService
     System.out.println("Product deleted");
   }
   @Transactional
-  
+
   public String buyItem(int pid,int quantity)
   {
     int update=groceryRepo.reduceStock(pid, quantity);
-    if(update>0)
-    {
-      return "Successful buy";
-    }
-    else
-    {
-      return "Out of Stock";
-    }
+    return update>0 ? "Successful buy":"Out of Stock";
+    
   }
   
 }

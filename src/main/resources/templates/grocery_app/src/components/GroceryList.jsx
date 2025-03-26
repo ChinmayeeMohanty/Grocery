@@ -16,6 +16,12 @@ const GroceryList = () => {
        
     )
     
+    const buyItem = (pid,quantity) => {
+        fetch(`http://localhost:8080/grocery/buy/${pid}/${quantity}`,{method:"POST"})
+        .then((res) => res.text())
+        .then((message) => alert(message))
+    
+    }
     return(
         <>
         <div>
@@ -26,7 +32,7 @@ const GroceryList = () => {
                         <h3>{item.name}</h3>
                         <p>{item.catagory}</p>
                         <p><b>{item.price}</b></p>
-                        <button  style={styles.button}>Add cart</button>
+                        <button  style={styles.button} onClick={() => buyItem(item.pid,5)} disabled={item.stocks===0}>Buy</button>
                     </div>))}
             </div>
         </div>
