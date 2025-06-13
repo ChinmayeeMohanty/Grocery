@@ -17,7 +17,7 @@ const GroceryList = () => {
     )
     
     const buyItem = (pid,quantity) => {
-        fetch(`http://localhost:8080/grocery/buy/${pid}/${quantity}`,{method:"POST"})
+        fetch(`http://localhost:8080/buy/${pid}/${quantity}`,{method:"POST"})
         .then((res) => res.text())
         .then((message) => alert(message))
     
