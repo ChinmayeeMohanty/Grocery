@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class GroceryItem {
-    private int stocks;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pid;
     private String name;
     private String catagory;
     private double price;
+    private int stocks;
     @ManyToOne
     @JoinColumn(name="customerId")
     private Customer customer;
